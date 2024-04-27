@@ -61,6 +61,7 @@ routes.get('/appsinfo/:appid', (req, res) => {
                 rating: gameData.ratings?.esrb?.rating,
                 rating_desc: gameData.ratings?.esrb?.descriptors,
                 required_age: gameData.ratings?.esrb?.required_age,
+                website: gameData.website,
             });
         } else {
             res.status(404).send('Jogo não encontrado');
