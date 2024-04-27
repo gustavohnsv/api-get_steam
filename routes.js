@@ -4,6 +4,7 @@ const axios = require('axios');
 const baseURL = 'https://api.steampowered.com/';
 const storeURL = 'http://store.steampowered.com/';
 const key = require('./secret.js').KEY;
+console.log(key);
 
 // Rota app-list
 routes.get('/', (req, res) => {
