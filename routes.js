@@ -3,6 +3,7 @@ const routes = express.Router();
 const axios = require('axios');
 const baseURL = 'https://api.steampowered.com/';
 const storeURL = 'http://store.steampowered.com/';
+const key = require('./secret.js').KEY;
 
 // Rota app-list
 routes.get('/', (req, res) => {
@@ -20,7 +21,7 @@ routes.get('/', (req, res) => {
 // Rota user-info
 routes.get('/userinfo/:steamid', (req, res) => {
     const STEAM_ID = req.params.steamid;
-    axios.get(`${baseURL}ISteamUser/GetPlayerSummaries/v0002/?key=444828FF0F642DB0BDD366F115534715&steamids=${STEAM_ID}`).then((response) => {
+    axios.get(`${baseURL}ISteamUser/GetPlayerSummaries/v0002/?key=${key}&steamids=${STEAM_ID}`).then((response) => {
         console.log(response.data);
         res.send(response.data);
     }).catch((error) => {
@@ -32,7 +33,7 @@ routes.get('/userinfo/:steamid', (req, res) => {
 // Rota user-app-list 
 routes.get('/userapps/:steamid', (req, res) => {
     const STEAM_ID = req.params.steamid;
-    axios.get(`${baseURL}IPlayerService/GetOwnedGames/v0001/?key=444828FF0F642DB0BDD366F115534715&steamid=${STEAM_ID}&format=json`).then((response) => {
+    axios.get(`${baseURL}IPlayerService/GetOwnedGames/v0001/?key=${key}&steamid=${STEAM_ID}&format=json`).then((response) => {
         console.log(response.data);
         res.send(response.data);
     }).catch((error) => {
@@ -72,7 +73,7 @@ routes.get('/appsinfo/:appid', (req, res) => {
 // Rota user-friends
 routes.get('/userfriends/:steamid', (req, res) => {
     const STEAM_ID = req.params.steamid;
-    axios.get(`${baseURL}ISteamUser/GetFriendList/v0001/?key=444828FF0F642DB0BDD366F115534715&steamid=${STEAM_ID}&relationship=friend`).then((response) => {
+    axios.get(`${baseURL}ISteamUser/GetFriendList/v0001/?key=${key}&steamid=${STEAM_ID}&relationship=friend`).then((response) => {
             console.log(response.data);
             res.send(response.data);
         }).catch((error) => {
