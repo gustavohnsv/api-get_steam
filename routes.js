@@ -10,8 +10,7 @@ console.log(key);
 routes.get('/', (req, res) => {
     axios.get(`${baseURL}ISteamApps/GetAppList/v2/`)
     .then((response) => {
-/*         console.log(response.data); */
-        res.send(response.data);
+        res.status(200).send(response.data);
     })
     .catch((error) => {
         console.error('Erro ao buscar dados da Steam:', error);
@@ -24,7 +23,7 @@ routes.get('/userinfo/:steamid', (req, res) => {
     const STEAM_ID = req.params.steamid;
     axios.get(`${baseURL}ISteamUser/GetPlayerSummaries/v0002/?key=${key}&steamids=${STEAM_ID}`).then((response) => {
         console.log(response.data);
-        res.send(response.data);
+        res.status(200).send(response.data);
     }).catch((error) => {
         console.error('Erro ao buscar dados da Steam:', error);
         res.status(500).send('Erro ao buscar dados da Steam');
@@ -36,7 +35,7 @@ routes.get('/userapps/:steamid', (req, res) => {
     const STEAM_ID = req.params.steamid;
     axios.get(`${baseURL}IPlayerService/GetOwnedGames/v0001/?key=${key}&steamid=${STEAM_ID}&format=json`).then((response) => {
         console.log(response.data);
-        res.send(response.data);
+        res.status(200).send(response.data);
     }).catch((error) => {
         console.error('Erro ao buscar dados da Steam:', error);
         res.status(500).send('Erro ao buscar dados da Steam');
@@ -77,7 +76,7 @@ routes.get('/userfriends/:steamid', (req, res) => {
     const STEAM_ID = req.params.steamid;
     axios.get(`${baseURL}ISteamUser/GetFriendList/v0001/?key=${key}&steamid=${STEAM_ID}&relationship=friend`).then((response) => {
             console.log(response.data);
-            res.send(response.data);
+            res.status(200).send(response.data);
         }).catch((error) => {
             console.error('Erro ao buscar dados da Steam:', error);
             res.status(500).send('Erro buscar dados da Steam');
